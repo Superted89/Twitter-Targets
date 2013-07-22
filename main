@@ -34,10 +34,10 @@ import java.io.IOException;
 
 public class Twitter_Targets_BETA extends PApplet {
 
-static String OAuthConsumerKey    = "88R0rbELP1KqZs2J7VT2DQ";
-static String OAuthConsumerSecret = "lzeK1zHq46GvP2xizTbk8p85l7vSaFr3zlAAkuCSCCo";
-static String AccessToken         = "474955075-0Ag9UMyXDut3gMU7MSxEz92mLuEEOOnwcfvnHE38";
-static String AccessTokenSecret   = "HaMgsdI3NU1rp1Fv9hNy72eMlY1mua6G5jMnmzd6k";
+static String OAuthConsumerKey    = "enter your consumer key";
+static String OAuthConsumerSecret = "enter your consumer secret";
+static String AccessToken         = "enter your access token";
+static String AccessTokenSecret   = "enter your access token secret";
 String myTimeline;
 String  myQueryWord = "cheese";
 java.util.List statuses = null;
