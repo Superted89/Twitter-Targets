@@ -1,4 +1,5 @@
-void getSearch() {
+
+public void getSearch() {
   while (running == true){
   try {
     println ("Searching.... Current time = " + hour() + ":" + minute() + ":" + second()); 
@@ -43,7 +44,7 @@ void getSearch() {
 
 
 
-void configure(){
+public void configure(){
   ConfigurationBuilder cb = new ConfigurationBuilder();
   cb.setOAuthConsumerKey(OAuthConsumerKey);
   cb.setOAuthConsumerSecret( OAuthConsumerSecret );
