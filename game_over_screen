@@ -1,0 +1,29 @@
+public void gameOver(){
+  running = false;
+  image(forest, 0, 0, displayWidth, displayHeight);
+    font = createFont("PICOWA__.TTF", 35);
+    textFont(font, 80);
+    fill(255);
+    text("GAME OVER", 400, 100);
+    
+    text("Score : " + score, 440, 500);
+    fill(255);
+    textFont(font,50);
+   
+    text("Try again?", 490, 300, 100);
+    if ((rectRectIntersect(800, 300, 800+100, 300+100, mouseX, mouseY, mouseX+400, mouseY+100) == true)) {
+    fill(0);
+    text("Try again?", 490, 300, 100);
+    }
+   
+    if(mousePressed){
+    if ((rectRectIntersect(800, 300, 800+100, 300+100, mouseX, mouseY, mouseX+400, mouseY+100) == true)) {
+      hit.trigger();
+      start = false;
+      
+    }
+    else {
+      bang.trigger();
+    }
+  }
+}
