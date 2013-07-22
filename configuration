@@ -1,0 +1,55 @@
+void getSearch() {
+  while (running == true){
+  try {
+    println ("Searching.... Current time = " + hour() + ":" + minute() + ":" + second()); 
+    Query query = new Query(myQueryWord);
+
+    query.count(50); // how many results to fetch
+
+    QueryResult result = twitter.search(query);
+
+    ArrayList tweetsContainingQuery = (ArrayList) result.getTweets();
+    if (tweetsContainingQuery.size() > 0) {
+      Status mostRecentTweetContainingQuery = (Status) tweetsContainingQuery.get(0);
+      long mostRecentTweetContainingQueryId = mostRecentTweetContainingQuery.getId();
+
+      if (previousIdOfTweetContainingQuery == 0) {
+        previousIdOfTweetContainingQuery = mostRecentTweetContainingQueryId;
+      }
+      if (mostRecentTweetContainingQueryId != previousIdOfTweetContainingQuery) {
+        // my word is tweeted
+        previousIdOfTweetContainingQuery = mostRecentTweetContainingQueryId;
+        Date d = mostRecentTweetContainingQuery.getCreatedAt();
+       
+        msg = mostRecentTweetContainingQuery.getText(); //msg becomes tweets
+       
+        tweets.add(new Tweets());     // add to the tweet array
+        println(msg);                 //print in console for reference
+        output.println(msg);         
+        output.flush();               //save to text file
+       
+                    //add to total to display number of tweets
+        }
+    }
+  }
+
+  catch (TwitterException te) {
+    println("Error connecting to Twitter: " + te); //let me know if somethings not right
+  };
+  delay(delayTime); // Delay time between fetching tweets
+  
+}
+}
+
+
+
+void configure(){
+  ConfigurationBuilder cb = new ConfigurationBuilder();
+  cb.setOAuthConsumerKey(OAuthConsumerKey);
+  cb.setOAuthConsumerSecret( OAuthConsumerSecret );
+  cb.setOAuthAccessToken( AccessToken);
+  cb.setOAuthAccessTokenSecret( AccessTokenSecret );
+  twitterFactory = new TwitterFactory(cb.build());
+  twitter = twitterFactory.getInstance();
+  println("connected");
+}
