@@ -1,0 +1,49 @@
+public void welcomeScreen() {
+
+  
+  image(forest, 0, 0, 1280, 800);
+  textFont(font, 100);
+  textMode(CENTER);
+  fill(255);
+  text("Twitter Targets", 185 , 200, 1000, 500);
+  noFill();
+  noStroke();
+  
+  textMode(CENTER);
+  fill(255);
+  text("Start", 480, 500, 100);
+  if ((rectRectIntersect(700, 500, 700+100, 500+100, mouseX, mouseY, mouseX+200, mouseY+100) == true)) {
+    fill(0);
+    text("Start", 480, 500, 100);
+  }
+  fill(255);
+  textFont(arial, 18);
+  rect(500, 100, 300, 50, 18);
+  if (locked == true){
+    image(lockedi, 750, 110, 30, 30);
+  }
+  else 
+  {
+    image(unlockedi, 750, 110, 30, 30);
+  }
+
+    
+  textMode(CENTER);
+  text("Enter a hashtag and press enter to lock/unlock. Shoot the birds before the time runs out. To reload, hit enter", 205, 350, 1000, 220);
+  fill(0);
+  text("# " + typing, 510, 135);
+
+  if (mousePressed && start == false) {
+    if ((rectRectIntersect(700, 500, 700+100, 500+100, mouseX, mouseY, mouseX+200, mouseY+100) == true)) {
+      hit.trigger();
+      runOnce = true;
+      start = true;
+      mousePressed = false;
+      
+    }
+    else {
+      bang.trigger();
+     
+    }
+  }
+}
