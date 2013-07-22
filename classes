@@ -1,0 +1,58 @@
+public class Tweets {
+  String files = "file";
+  float ix = random(1200);
+  float iy = random(570);
+  float iw = 25;
+  float ih = 25;
+  boolean collide;
+  float iyi = iy;
+  int speed = 0;
+  int up = 0;
+
+  public void getTweet(int index) {
+
+    if (index < headlines.length) {
+      image(img, ix, iyi, 100, 100);
+      iyi = iyi + speed;
+     
+      if (iyi == iy ) {
+        total = total - 0.011f;
+      }
+      
+      if ((collide == true) && (iyi == iy) && (total > 0)) {
+        image(bullet, ix+30, iy+40, 25, 25);
+        fill(255);
+        hit.trigger();
+        speed = 30;
+        total = total + 1.00f;
+        score = score + 1;
+      }
+     
+      if (speed > 5) {
+        textFont(arial, 10);
+        fill(255);
+        text(headlines[index], ix, iy, iw, ih);
+        iyi = iyi + 10;
+        iy = iy - 1;
+        iw = iw + 4;
+        ih = ih + 3;
+      }
+    }
+
+    if ((mousePressed == true) && (collide == false) && (ammo > 0)) {
+      bang.trigger();
+    }
+  }
+
+  public void check() {
+    if (mousePressed && ammo > 0) {
+      if ((rectRectIntersect(ix, iy, ix+100, iy+100, mouseX, mouseY, mouseX, mouseY) == true)) {
+        collide = true;
+      }
+    }
+    else {
+      collide = false;
+    }
+  }
+}
+
