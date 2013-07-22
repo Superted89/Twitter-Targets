@@ -1,0 +1,76 @@
+public void gameScreen() {
+   
+  if (runOnce == true) {                 
+    ammo = 4;
+    score = 0;
+    total = 20.00f;
+    running = true;
+    configure();
+    thread("getSearch");
+    tweets = new ArrayList<Tweets>(); 
+    output = createWriter("tweets.txt");
+    tweets.add(new Tweets()); 
+    runOnce = false;
+  }
+  image(forest, 0, 0, 1280, 800);
+  cursor(CROSS);
+  headlines = loadStrings("tweets.txt");
+  if (headlines.length < 1){
+    fill(255);
+    textFont(font, 40);
+    text("Get Ready...", 500, 300);
+  }
+  for (int i = tweets.size()-1;i>=0;i--) {      //add tweets as they come in and show at the top of the screen - height
+    Tweets tweet = tweets.get(i);
+    tweet.getTweet(i);
+    tweet.check();
+  }
+  
+  fill(255);
+  rect(560,20,150, 40, 20);
+  rect(40,20, 100, 40, 20);
+  rect(1050, 20, 190, 40, 20);
+  image(ammoi, 1065, 25, 40, 30);
+  image(ammoi, 1105, 25, 40, 30);
+  image(ammoi, 1145, 25, 40, 30);
+  image(ammoi, 1185, 25, 40, 30);
+  textFont(font, 40);
+  fill(0);
+  
+  text(total, 557, 50);
+  text(score, 50, 50 );
+  if(ammo == 3){
+    fill(255);
+    rect(1180,25,40,35);
+  }
+  else if (ammo == 2){
+    fill(255);
+    rect(1180,25,40,35);
+    rect(1140,25,40,35);
+  }
+  else if (ammo == 1){
+    fill(255);
+    rect(1180,25,40,35);
+    rect(1140,25,40,35);
+    rect(1100, 25, 40, 35);
+  }
+   else if (ammo == 0){
+    fill(255);
+    rect(1180,25,40,35);
+    rect(1140,25,40,35);
+    rect(1100, 25, 40, 35);
+    rect(1060,25,40,35,20);
+    fill(0);
+    text("RELOAD!", 1065, 50);
+  }
+  if (mousePressed && total > 1) {
+    ammo = ammo - 1;
+    mousePressed = false;
+ 
+  }
+  
+  if (ammo < 0) {
+     ammo = 0;
+  }
+   reloading();
+}
