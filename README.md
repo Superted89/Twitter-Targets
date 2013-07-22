@@ -4,7 +4,7 @@ Twitter-Targets
  To use you will need to set up your own OAUTH details for the twitter API and add them in main under the fields. 
 
 
- INSTRUCTIONS
+ Instructions
 ==============
  Press enter to lock/unlock your search term, if it is locked myQuery is updated with your term
  Click start to begin
@@ -29,7 +29,7 @@ EASY SEARCH TERMS
  Creme Caramel
  Velociraptor
 
-LICENSE
+License
 ==============
 Attribution-NonCommercial-ShareAlike 
 CC BY-NC-SA
